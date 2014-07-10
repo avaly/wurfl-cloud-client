@@ -4,6 +4,7 @@
 	"version": "1.0.0",
 	"options": {
 		"paths": "lib/",
-		"outdir": "docs"
+		"outdir": "docs",
+		"themedir": "node_modules/yuidoc-theme-blue"
 	}
 }
