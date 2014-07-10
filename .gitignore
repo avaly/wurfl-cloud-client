@@ -3,3 +3,4 @@ node_modules
 lcov-report
 lib-cov
 lcov.info
+.coveralls.yml
