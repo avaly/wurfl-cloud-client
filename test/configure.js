@@ -1,4 +1,5 @@
-var assert = require('assert');
+var assert = require('assert'),
+	nock = require('nock');
 
 var client = require('./../');
 
@@ -29,4 +30,16 @@ suite('configure:', function(){
 			ttl: 2592000
 		});
 	});
+
+	test('initialize in deviceDetect', function(done){
+		nock('http://api.wurflcloud.com').get('/v1/json/').reply(200, {});
+
+		client.detectDevice('UA', function(err, result){
+			assert.ifError(err);
+			assert.notEqual(client.config, {});
+			assert.equal(client.config.host, 'api.wurflcloud.com');
+			done();
+		});
+	});
+
 });

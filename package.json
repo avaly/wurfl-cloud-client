@@ -8,8 +8,14 @@
   },
   "author": "Valentin Agachi",
   "license": "ISC",
+  "files": [
+    "README.md",
+    "index.js",
+    "lib"
+  ],
   "dependencies": {
     "lodash.assign": "^2.4.1",
+    "lodash.foreach": "^2.4.1",
     "request": "^2.37.0"
   },
   "devDependencies": {

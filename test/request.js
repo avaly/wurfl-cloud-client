@@ -12,6 +12,10 @@ suite('request from server:', function(){
 		this.nock = nock('http://foobar.com').get('/v1/json/');
 	});
 
+	teardown(function(){
+		client.config = null;
+	});
+
 	test('receive correct JSON', function(done){
 		this.nock
 			.matchHeader(
@@ -20,6 +24,7 @@ suite('request from server:', function(){
 			)
 			.matchHeader('User-Agent', 'FooBar UA')
 			.matchHeader('X-Cloud-Client', /nodejs\/wurfl-cloud-client [\d\.]+/)
+			.matchHeader('X-Custom', 'foobar')
 			.reply(200, {
 				apiVersion: 'WurflCloud 1.5.0.2',
 				mtime: 1403122184,
@@ -33,7 +38,9 @@ suite('request from server:', function(){
 				errors:{}
 			});
 
-		client.detectDevice('FooBar UA', function(err, result){
+		client.detectDevice('FooBar UA', {
+			'X-Custom': 'foobar'
+		}, function(err, result){
 			assert.ifError(err);
 			assert.deepEqual(result, {
 				id: 'generic_ms_phone_os7_5',
