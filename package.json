@@ -3,11 +3,35 @@
   "version": "1.0.0",
   "description": "Detect devices using WURFL Cloud",
   "main": "index.js",
+  "author": {
+    "name": "Valentin Agachi",
+    "url": "http://agachi.name/"
+  },
+  "homepage": "https://github.com/avaly/wurfl-cloud-client",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/avaly/wurfl-cloud-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/avaly/wurfl-cloud-client/issues"
+  },
+  "keywords": [
+    "wurfl",
+    "wurfl-cloud",
+    "cloud",
+    "device",
+    "detect",
+    "detection",
+    "capabilities",
+    "middlware"
+  ],
+  "license": "ISC",
+  "engines": {
+    "node": ">=0.10"
+  },
   "scripts": {
     "test": "mocha"
   },
-  "author": "Valentin Agachi",
-  "license": "ISC",
   "files": [
     "README.md",
     "index.js",
