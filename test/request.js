@@ -13,21 +13,27 @@ suite('request from server:', function(){
 	});
 
 	test('receive correct JSON', function(done){
-		this.nock.reply(200, {
-			apiVersion: 'WurflCloud 1.5.0.2',
-			mtime: 1403122184,
-			id: 'generic_ms_phone_os7_5',
-			capabilities: {
-				is_wireless_device: true,
-				mobile_browser: 'IEMobile',
-				pointing_method: 'touchscreen',
-				device_os: 'Windows Phone OS'
-			},
-			errors:{}
-		});
+		this.nock
+			.matchHeader(
+				'Authorization',
+				'Basic ' + new Buffer(client.config.apiKey).toString('base64')
+			)
+			.matchHeader('User-Agent', 'FooBar UA')
+			.matchHeader('X-Cloud-Client', /nodejs\/wurfl-cloud-client [\d\.]+/)
+			.reply(200, {
+				apiVersion: 'WurflCloud 1.5.0.2',
+				mtime: 1403122184,
+				id: 'generic_ms_phone_os7_5',
+				capabilities: {
+					is_wireless_device: true,
+					mobile_browser: 'IEMobile',
+					pointing_method: 'touchscreen',
+					device_os: 'Windows Phone OS'
+				},
+				errors:{}
+			});
 
 		client.detectDevice('FooBar UA', function(err, result){
-			// TODO assert Auth header
 			assert.ifError(err);
 			assert.deepEqual(result, {
 				id: 'generic_ms_phone_os7_5',
