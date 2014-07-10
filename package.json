@@ -1,0 +1,22 @@
+{
+  "name": "wurfl-cloud-client",
+  "version": "1.0.0",
+  "description": "WURFL Cloud Client",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Valentin Agachi",
+  "license": "ISC",
+  "dependencies": {
+    "lodash.assign": "^2.4.1",
+    "request": "^2.37.0"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.1",
+    "istanbul": "^0.3.0",
+    "mocha": "^1.20.1",
+    "mocha-istanbul": "^0.2.0",
+    "nock": "^0.42.0"
+  }
+}

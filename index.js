@@ -1,0 +1,1 @@
+module.exports = require(process.env.COVERAGE ? './lib-cov' : './lib');
