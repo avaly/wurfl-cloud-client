@@ -1,0 +1,130 @@
+{
+    "project": {
+        "name": "WURFL Cloud Client",
+        "description": "Detect devices using WURFL Cloud",
+        "version": "1.0.0"
+    },
+    "files": {
+        "lib/index.js": {
+            "name": "lib/index.js",
+            "modules": {},
+            "classes": {
+                "WURFLCloudClient": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "WURFLCloudClient": {
+            "name": "WURFLCloudClient",
+            "shortname": "WURFLCloudClient",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/index.js",
+            "line": 105,
+            "description": "WURFL Cloud client module"
+        }
+    },
+    "classitems": [
+        {
+            "file": "lib/index.js",
+            "line": 112,
+            "description": "The config object",
+            "itemtype": "property",
+            "name": "config",
+            "type": "{Object}",
+            "class": "WURFLCloudClient"
+        },
+        {
+            "file": "lib/index.js",
+            "line": 120,
+            "description": "The cache interface used to save detections results.\n\nThe implementation of the cache layer is left up to the application using this module.\nAll it needs to expose in this interface is two methods: `get` and `set`.\nThe TTL for storing these cached values can be defined in the configuration, default is 30 days.",
+            "example": [
+                "\n\n    client.cache = {\n        get: function(key, callback) {},\n        set: function(key, value, ttl) {}\n    };"
+            ],
+            "itemtype": "property",
+            "name": "cache",
+            "type": "{Object}",
+            "class": "WURFLCloudClient"
+        },
+        {
+            "file": "lib/index.js",
+            "line": 139,
+            "description": "Configure the module\n\nAn API key can be either sent as `apiKey` in `username:password` format\nor as individual `username` and `password` properties.",
+            "example": [
+                "\n\n    client.configure({\n      host: 'custom-wurfl-cloud-host.com',\n      apiKey: 'foobar:1234567890'\n    });\n\n    client.configure({\n      username: 'foobar',\n      username: '1234567890'\n    });"
+            ],
+            "static": 1,
+            "itemtype": "method",
+            "name": "configure",
+            "params": [
+                {
+                    "name": "configuration",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "WURFLCloudClient"
+        },
+        {
+            "file": "lib/index.js",
+            "line": 173,
+            "description": "Detect a device by user agent",
+            "example": [
+                "\n\n    client.detectDevice(userAgent, function(err, result) {\n      // result is part of the response from WURFL cloud\n    });\n\n    client.detectDevice(userAgent, {\n      'X-Extra-Header': 'Wow!'\n    }, function(err, result) {\n      // result is part of the response from WURFL cloud\n    });"
+            ],
+            "static": 1,
+            "itemtype": "method",
+            "name": "detectDevice",
+            "params": [
+                {
+                    "name": "ua",
+                    "description": "User Agent string",
+                    "type": "String"
+                },
+                {
+                    "name": "headers",
+                    "description": "Extra HTTP headers",
+                    "type": "Object",
+                    "optional": true
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback gets called with `(err, result)`",
+                    "type": "Function"
+                }
+            ],
+            "class": "WURFLCloudClient"
+        },
+        {
+            "file": "lib/index.js",
+            "line": 214,
+            "description": "Middleware for `connect`/`express`-based applications.\n\nIt populates a `capabilities` on the `request` parameter,\ncontaining the `capabilities` object from the server response.",
+            "example": [
+                "\n\n    var app = express();\n    app.use(client.middleware());\n    app.get('/', function(req) {\n      // req.capabilities is populated now\n    });"
+            ],
+            "static": 1,
+            "itemtype": "method",
+            "name": "middleware",
+            "params": [
+                {
+                    "name": "configuration",
+                    "description": "",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "The middleware function that takes in the arguments `(req, res, next)`",
+                "type": "Function"
+            },
+            "class": "WURFLCloudClient"
+        }
+    ],
+    "warnings": []
+}
