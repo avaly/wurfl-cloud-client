@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Do not publish docs for pull requests
+if [[ "$TRAVIS_PULL_REQUEST" == "true" ]]; then
+	exit 0
+fi
+
+DOCS_BUILD="./docs"
+DOCS_REPO="/tmp/wurfl-cloud-client-docs"
+
+rm -rf $DOCS_BUILD $DOCS_REPO
+git config user.name "Travis CI"
+git config user.email "travis@travis-ci.com"
+git clone -v --branch gh-pages https://${GH_TOKEN}@github.com/avaly/wurfl-cloud-client.git $DOCS_REPO
+node_modules/.bin/yuidoc
+cd $DOCS_BUILD
+rsync -rt --exclude=".git" . $DOCS_REPO
+cd $DOCS_REPO
+git add --all .
+git commit -m "Documentation update for $TRAVIS_COMMIT"
+git push origin gh-pages

@@ -7,4 +7,10 @@ cache:
   directories:
     - node_modules
 
-after_success: ./coverage.sh
+env:
+  global:
+    - secure: "MgR802lgNK7hCjupbXQkSj6sRxrLO9pO+gvhV5S9X9LkQfaZL3jYgkM8+26dra4Bqtj79VhbgUBIoqzFWQyHN0RobOaJFzN5DbrAnklZ0LNsTeANEeczSa7FJxy9h2mbPPZFNix3HJnFcnRa3vHfVedIeqJEZ1NYX9+iFo/OgZQ="
+
+after_success:
+  - "./tools/coverage"
+  - "./tools/docs"

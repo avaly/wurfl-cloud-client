@@ -1,8 +1,8 @@
 #!/bin/bash
 
-istanbul instrument --output lib-cov lib
+node_modules/.bin/istanbul instrument --output lib-cov lib
 
-COVERAGE=1 ISTANBUL_REPORTERS="text-summary,lcovonly" mocha --reporter mocha-istanbul
+COVERAGE=1 ISTANBUL_REPORTERS="text-summary,lcovonly" node_modules/.bin/mocha --reporter mocha-istanbul
 
 if [[ "$TRAVIS" == "true" ]]; then
 	cat lcov.info | node_modules/coveralls/bin/coveralls.js
