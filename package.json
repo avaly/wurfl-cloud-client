@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "coveralls": "^2.11.1",
+    "doxstrap": "0.0.2",
     "istanbul": "^0.3.0",
     "mocha": "^1.20.1",
     "mocha-istanbul": "^0.2.0",
