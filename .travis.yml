@@ -14,3 +14,10 @@ env:
 after_success:
   - "./tools/coverage"
   - "./tools/docs"
+
+deploy:
+  provider: npm
+  api_key:
+    secure: mbgGlJGgLteOROnKiNcR+DJf5rSx8Ol+2qt5vkxWFsZYdnBi0DW4Z3iScmtWaZVUUDyqf0WT+p/Q9Ef5qM8/Gn7Ryt8bs6U6H+3zKBf7ZUBf+Wg242gFtQQwPrykb5PylN0O55EOaOjDEs9RXEPsjeCa/m64lQOc2hU6P+pI4a8=
+  on:
+    branch: master
