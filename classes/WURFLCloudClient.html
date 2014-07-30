@@ -89,7 +89,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/lib_index.js.html#l105"><code>lib&#x2F;index.js:105</code></a>
+            Defined in: <a href="../files/lib_index.js.html#l113"><code>lib&#x2F;index.js:113</code></a>
         </div>
     
 
@@ -160,6 +160,15 @@
                                 
                             </li>
                         
+                            <li class="index-item method">
+                                <a href="#method_register">register</a>
+
+                                
+                                    <span class="flag static">static</span>
+                                
+                                
+                            </li>
+                        
                     </ul>
                 </div>
             
@@ -212,7 +221,7 @@
       
     
     
-      <a href="../files/lib_index.js.html#l139"><code>lib&#x2F;index.js:139</code></a>
+      <a href="../files/lib_index.js.html#l147"><code>lib&#x2F;index.js:147</code></a>
     
   </p>
 
@@ -298,13 +307,13 @@ or as individual <code>username</code> and <code>password</code> properties.</p>
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>client.configure({
-  host: &#39;custom-wurfl-cloud-host.com&#39;,
-  apiKey: &#39;foobar:1234567890&#39;
+    host: &#39;custom-wurfl-cloud-host.com&#39;,
+    apiKey: &#39;foobar:1234567890&#39;
 });
 
 client.configure({
-  username: &#39;foobar&#39;,
-  username: &#39;1234567890&#39;
+    username: &#39;foobar&#39;,
+    password: &#39;1234567890&#39;
 });</code></pre>
 
             </div>
@@ -330,7 +339,7 @@ client.configure({
       
     
     
-      <a href="../files/lib_index.js.html#l173"><code>lib&#x2F;index.js:173</code></a>
+      <a href="../files/lib_index.js.html#l181"><code>lib&#x2F;index.js:181</code></a>
     
   </p>
 
@@ -460,13 +469,13 @@ client.configure({
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>client.detectDevice(userAgent, function(err, result) {
-  // result is part of the response from WURFL cloud
+    // result is part of the response from WURFL cloud
 });
 
 client.detectDevice(userAgent, {
-  &#39;X-Extra-Header&#39;: &#39;Wow!&#39;
+    &#39;X-Extra-Header&#39;: &#39;Wow!&#39;
 }, function(err, result) {
-  // result is part of the response from WURFL cloud
+    // result is part of the response from WURFL cloud
 });</code></pre>
 
             </div>
@@ -492,7 +501,7 @@ client.detectDevice(userAgent, {
       
     
     
-      <a href="../files/lib_index.js.html#l214"><code>lib&#x2F;index.js:214</code></a>
+      <a href="../files/lib_index.js.html#l222"><code>lib&#x2F;index.js:222</code></a>
     
   </p>
 
@@ -545,7 +554,7 @@ client.detectDevice(userAgent, {
       <h3>Summary</h3>
         <p>Middleware for <code>connect</code>/<code>express</code>-based applications.</p>
 <p>It populates a <code>capabilities</code> on the <code>request</code> parameter,
-containing the <code>capabilities</code> object from the server response.</p>
+containing the <code>capabilities</code> object from the WURFL Cloud response.</p>
 
     </div>
 
@@ -601,9 +610,177 @@ containing the <code>capabilities</code> object from the server response.</p>
 
             <div class="example-content">
                 <pre class="code prettyprint"><code>var app = express();
-app.use(client.middleware());
+app.use(client.middleware({
+    apiKey: &#39;...&#39;
+}));
 app.get(&#39;/&#39;, function(req) {
-  // req.capabilities is populated now
+    // req.capabilities is populated now
+});</code></pre>
+
+            </div>
+        </div>
+    
+
+    
+
+</div>
+
+                
+                    <div id="method_register" class="method item">
+  <h3 class="blue-method-name">register</h3>
+
+  <div class="meta method-meta">
+    
+      
+        
+      <p>
+        
+          Defined in
+        
+      
+    
+    
+      <a href="../files/lib_index.js.html#l262"><code>lib&#x2F;index.js:262</code></a>
+    
+  </p>
+
+
+    
+
+    
+  </div>
+
+  <h3>Syntax</h3>
+  <div class="blue-method-syntax">
+  <h3 class="name"><code>register</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>plugin</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>next</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag static">static</span>
+    
+
+    
+
+    
+
+  </div>
+    <div class="description">
+      <h3>Summary</h3>
+        <p>Hapi plugin</p>
+<p>It populates a <code>capabilities</code> on the <code>request</code> parameter,
+containing the <code>capabilities</code> object from the WURFL Cloud response.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">plugin</code>
+                        <span class="type">Hapi</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">next</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>var Hapi = require(&#39;hapi&#39;);
+var server = new Hapi.Server();
+server.pack.register({
+    plugin: require(&#39;wurfl-cloud-client&#39;),
+    options: {
+        apiKey: &#39;...&#39;
+    }
+});
+server.route({
+    method: &#39;GET&#39;,
+    path: &#39;/&#39;,
+    handler: function(request, reply) {
+        // request.capabilities is populated now
+    }
 });</code></pre>
 
             </div>
@@ -637,7 +814,7 @@ app.get(&#39;/&#39;, function(req) {
       
     
     
-      <a href="../files/lib_index.js.html#l120"><code>lib&#x2F;index.js:120</code></a>
+      <a href="../files/lib_index.js.html#l128"><code>lib&#x2F;index.js:128</code></a>
     
   </p>
 
@@ -707,7 +884,7 @@ The TTL for storing these cached values can be defined in the configuration, def
       
     
     
-      <a href="../files/lib_index.js.html#l112"><code>lib&#x2F;index.js:112</code></a>
+      <a href="../files/lib_index.js.html#l120"><code>lib&#x2F;index.js:120</code></a>
     
   </p>
 

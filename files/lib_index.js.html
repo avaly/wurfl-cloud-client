@@ -156,7 +156,15 @@ var internal = {
 
 	prepareHeaders: function(req){
 		var headers = [],
-			ip = req.connection.remoteAddress;
+			ip = (
+				req.connection &amp;&amp; req.connection.remoteAddress ?
+				req.connection.remoteAddress : // express
+				(
+					req.info &amp;&amp; req.info.remoteAddress ?
+					req.info.remoteAddress :  // hapi
+					null
+				)
+			);
 
 		headers[&#x27;x-forwarded-for&#x27;] = ip;
 		if (req.headers[&#x27;x-forwarded-for&#x27;]) {
@@ -232,13 +240,13 @@ var client = module.exports = {
 	 * @example
 	 *
 	 *     client.configure({
-	 *       host: &#x27;custom-wurfl-cloud-host.com&#x27;,
-	 *       apiKey: &#x27;foobar:1234567890&#x27;
+	 *         host: &#x27;custom-wurfl-cloud-host.com&#x27;,
+	 *         apiKey: &#x27;foobar:1234567890&#x27;
 	 *     });
 	 *
 	 *     client.configure({
-	 *       username: &#x27;foobar&#x27;,
-	 *       username: &#x27;1234567890&#x27;
+	 *         username: &#x27;foobar&#x27;,
+	 *         password: &#x27;1234567890&#x27;
 	 *     });
 	 *
 	 * @static
@@ -263,13 +271,13 @@ var client = module.exports = {
 	 * @example
 	 *
 	 *     client.detectDevice(userAgent, function(err, result) {
-	 *       // result is part of the response from WURFL cloud
+	 *         // result is part of the response from WURFL cloud
 	 *     });
 	 *
 	 *     client.detectDevice(userAgent, {
-	 *       &#x27;X-Extra-Header&#x27;: &#x27;Wow!&#x27;
+	 *         &#x27;X-Extra-Header&#x27;: &#x27;Wow!&#x27;
 	 *     }, function(err, result) {
-	 *       // result is part of the response from WURFL cloud
+	 *         // result is part of the response from WURFL cloud
 	 *     });
 	 *
 	 * @static
@@ -302,14 +310,16 @@ var client = module.exports = {
 	 * Middleware for &#x60;connect&#x60;/&#x60;express&#x60;-based applications.
 	 *
 	 * It populates a &#x60;capabilities&#x60; on the &#x60;request&#x60; parameter,
-	 * containing the &#x60;capabilities&#x60; object from the server response.
+	 * containing the &#x60;capabilities&#x60; object from the WURFL Cloud response.
 	 *
 	 * @example
 	 *
 	 *     var app = express();
-	 *     app.use(client.middleware());
+	 *     app.use(client.middleware({
+	 *         apiKey: &#x27;...&#x27;
+	 *     }));
 	 *     app.get(&#x27;/&#x27;, function(req) {
-	 *       // req.capabilities is populated now
+	 *         // req.capabilities is populated now
 	 *     });
 	 *
 	 * @static
@@ -334,8 +344,63 @@ var client = module.exports = {
 				}
 			);
 		};
+	},
+
+	/**
+	 * Hapi plugin
+	 *
+	 * It populates a &#x60;capabilities&#x60; on the &#x60;request&#x60; parameter,
+	 * containing the &#x60;capabilities&#x60; object from the WURFL Cloud response.
+	 *
+	 * @example
+	 *
+	 *     var Hapi = require(&#x27;hapi&#x27;);
+	 *     var server = new Hapi.Server();
+	 *     server.pack.register({
+	 *         plugin: require(&#x27;wurfl-cloud-client&#x27;),
+	 *         options: {
+	 *             apiKey: &#x27;...&#x27;
+	 *         }
+	 *     });
+	 *     server.route({
+	 *         method: &#x27;GET&#x27;,
+	 *         path: &#x27;/&#x27;,
+	 *         handler: function(request, reply) {
+	 *             // request.capabilities is populated now
+	 *         }
+	 *     });
+	 *
+	 * @static
+	 * @method register
+	 * @param  {Hapi} plugin
+	 * @param  {Object} options
+	 * @param  {Function} next
+	 */
+	register: function(plugin, options, next) {
+		if (!client.config || options) {
+			client.configure(options);
+		}
+
+		plugin.ext(&#x27;onRequest&#x27;, function(request, extNext) {
+			client.detectDevice(
+				request.headers[&#x27;user-agent&#x27;],
+				internal.prepareHeaders(request),
+				function(err, result){
+					if (!err &amp;&amp; result.capabilities) {
+						request.capabilities = result.capabilities;
+					}
+					extNext();
+				}
+			);
+		});
+
+		next();
 	}
 
+};
+
+module.exports.register.attributes = {
+	pkg: require(&#x27;../package.json&#x27;)
 };
 
     </pre>
