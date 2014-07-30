@@ -18,7 +18,7 @@
             <h1 class="blue-main-title">WURFL Cloud Client</h1>
         </div>
         <div class="yui3-u-1-4 version project-version">
-            API Docs for: 1.1.2
+            API Docs for: 1.1.3
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -85,8 +85,7 @@
 
 <div class="file">
     <pre class="code prettyprint linenums">
-var _assign = require(&#x27;lodash.assign&#x27;),
-	_each = require(&#x27;lodash.foreach&#x27;),
+var _ = require(&#x27;underscore&#x27;),
 	request = require(&#x27;request&#x27;);
 
 // Default configuration
@@ -122,7 +121,7 @@ var internal = {
 				username: client.config.username,
 				password: client.config.password
 			},
-			headers: _assign({
+			headers: _.extend({
 				&#x27;User-Agent&#x27;: ua,
 				&#x27;X-Cloud-Client&#x27;: &#x27;nodejs/wurfl-cloud-client &#x27; + internal.version
 			}, headers || {}),
@@ -171,7 +170,7 @@ var internal = {
 			headers[&#x27;x-forwarded-for&#x27;] += &#x27;,&#x27; + req.headers[&#x27;x-forwarded-for&#x27;];
 		}
 
-		_each(HEADERS_MAP, function(resKey, reqKey){
+		_.each(HEADERS_MAP, function(resKey, reqKey){
 			if (req.headers[reqKey]) {
 				headers[resKey] = req.headers[reqKey];
 			}
@@ -261,7 +260,7 @@ var client = module.exports = {
 	configure: function(configuration) {
 		var parts;
 
-		client.config = _assign(_assign({}, defaultConfig), configuration);
+		client.config = _.extend({}, defaultConfig, configuration);
 
 		if (client.config.apiKey) {
 			parts = client.config.apiKey.split(&#x27;:&#x27;);
