@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - "0.10"
-  - "0.11"
+  - 0.10
+  - 0.11
 
 cache:
   directories:
@@ -9,7 +9,7 @@ cache:
 
 env:
   global:
-    - secure: "MgR802lgNK7hCjupbXQkSj6sRxrLO9pO+gvhV5S9X9LkQfaZL3jYgkM8+26dra4Bqtj79VhbgUBIoqzFWQyHN0RobOaJFzN5DbrAnklZ0LNsTeANEeczSa7FJxy9h2mbPPZFNix3HJnFcnRa3vHfVedIeqJEZ1NYX9+iFo/OgZQ="
+    - secure: MgR802lgNK7hCjupbXQkSj6sRxrLO9pO+gvhV5S9X9LkQfaZL3jYgkM8+26dra4Bqtj79VhbgUBIoqzFWQyHN0RobOaJFzN5DbrAnklZ0LNsTeANEeczSa7FJxy9h2mbPPZFNix3HJnFcnRa3vHfVedIeqJEZ1NYX9+iFo/OgZQ=
 
 after_success:
   - "./tools/coverage"
@@ -17,8 +17,9 @@ after_success:
 
 deploy:
   provider: npm
-  email: "github-com@agachi.name"
+  email: github-com@agachi.name
   api_key:
     secure: mbgGlJGgLteOROnKiNcR+DJf5rSx8Ol+2qt5vkxWFsZYdnBi0DW4Z3iScmtWaZVUUDyqf0WT+p/Q9Ef5qM8/Gn7Ryt8bs6U6H+3zKBf7ZUBf+Wg242gFtQQwPrykb5PylN0O55EOaOjDEs9RXEPsjeCa/m64lQOc2hU6P+pI4a8=
   on:
-    branch: master
+    tags: true
+    repo: avaly/wurfl-cloud-client
