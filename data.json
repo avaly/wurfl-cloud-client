@@ -2,7 +2,7 @@
     "project": {
         "name": "WURFL Cloud Client",
         "description": "Detect devices using WURFL Cloud",
-        "version": "1.1.0"
+        "version": "1.1.1"
     },
     "files": {
         "lib/index.js": {
@@ -43,7 +43,7 @@
         {
             "file": "lib/index.js",
             "line": 128,
-            "description": "The cache interface used to save detections results.\n\nThe implementation of the cache layer is left up to the application using this module.\nAll it needs to expose in this interface is two methods: `get` and `set`.\nThe TTL for storing these cached values can be defined in the configuration, default is 30 days.",
+            "description": "The cache interface used to save detections results.\n\nThe implementation of the cache layer is left up to the application using this module.\n\nAll it needs to expose in this interface is two methods: `get` and `set`.\n\nThe cache key will be set to `device:UA` where `UA` is the User-Agent string with\nall instances of the `:` character replaced by `_`, to play nice with Redis keys.\n\nThe TTL for storing these cached values can be defined in the configuration, default is 30 days.",
             "example": [
                 "\n\n    client.cache = {\n        get: function(key, callback) {},\n        set: function(key, value, ttl) {}\n    };"
             ],
@@ -54,7 +54,7 @@
         },
         {
             "file": "lib/index.js",
-            "line": 147,
+            "line": 152,
             "description": "Configure the module\n\nAn API key can be either sent as `apiKey` in `username:password` format\nor as individual `username` and `password` properties.",
             "example": [
                 "\n\n    client.configure({\n        host: 'custom-wurfl-cloud-host.com',\n        apiKey: 'foobar:1234567890'\n    });\n\n    client.configure({\n        username: 'foobar',\n        password: '1234567890'\n    });"
@@ -73,7 +73,7 @@
         },
         {
             "file": "lib/index.js",
-            "line": 181,
+            "line": 186,
             "description": "Detect a device by user agent",
             "example": [
                 "\n\n    client.detectDevice(userAgent, function(err, result) {\n        // result is part of the response from WURFL cloud\n    });\n\n    client.detectDevice(userAgent, {\n        'X-Extra-Header': 'Wow!'\n    }, function(err, result) {\n        // result is part of the response from WURFL cloud\n    });"
@@ -103,7 +103,7 @@
         },
         {
             "file": "lib/index.js",
-            "line": 222,
+            "line": 227,
             "description": "Middleware for `connect`/`express`-based applications.\n\nIt populates a `capabilities` on the `request` parameter,\ncontaining the `capabilities` object from the WURFL Cloud response.",
             "example": [
                 "\n\n    var app = express();\n    app.use(client.middleware({\n        apiKey: '...'\n    }));\n    app.get('/', function(req) {\n        // req.capabilities is populated now\n    });"
@@ -127,7 +127,7 @@
         },
         {
             "file": "lib/index.js",
-            "line": 262,
+            "line": 267,
             "description": "Hapi plugin\n\nIt populates a `capabilities` on the `request` parameter,\ncontaining the `capabilities` object from the WURFL Cloud response.",
             "example": [
                 "\n\n    var Hapi = require('hapi');\n    var server = new Hapi.Server();\n    server.pack.register({\n        plugin: require('wurfl-cloud-client'),\n        options: {\n            apiKey: '...'\n        }\n    });\n    server.route({\n        method: 'GET',\n        path: '/',\n        handler: function(request, reply) {\n            // request.capabilities is populated now\n        }\n    });"

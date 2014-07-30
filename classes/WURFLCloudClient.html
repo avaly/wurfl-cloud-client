@@ -18,7 +18,7 @@
             <h1 class="blue-main-title">WURFL Cloud Client</h1>
         </div>
         <div class="yui3-u-1-4 version project-version">
-            API Docs for: 1.1.0
+            API Docs for: 1.1.1
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -221,7 +221,7 @@
       
     
     
-      <a href="../files/lib_index.js.html#l147"><code>lib&#x2F;index.js:147</code></a>
+      <a href="../files/lib_index.js.html#l152"><code>lib&#x2F;index.js:152</code></a>
     
   </p>
 
@@ -339,7 +339,7 @@ client.configure({
       
     
     
-      <a href="../files/lib_index.js.html#l181"><code>lib&#x2F;index.js:181</code></a>
+      <a href="../files/lib_index.js.html#l186"><code>lib&#x2F;index.js:186</code></a>
     
   </p>
 
@@ -501,7 +501,7 @@ client.detectDevice(userAgent, {
       
     
     
-      <a href="../files/lib_index.js.html#l222"><code>lib&#x2F;index.js:222</code></a>
+      <a href="../files/lib_index.js.html#l227"><code>lib&#x2F;index.js:227</code></a>
     
   </p>
 
@@ -640,7 +640,7 @@ app.get(&#39;/&#39;, function(req) {
       
     
     
-      <a href="../files/lib_index.js.html#l262"><code>lib&#x2F;index.js:262</code></a>
+      <a href="../files/lib_index.js.html#l267"><code>lib&#x2F;index.js:267</code></a>
     
   </p>
 
@@ -841,9 +841,11 @@ server.route({
     <div class="description">
       <h3>Summary</h3>
         <p>The cache interface used to save detections results.</p>
-<p>The implementation of the cache layer is left up to the application using this module.
-All it needs to expose in this interface is two methods: <code>get</code> and <code>set</code>.
-The TTL for storing these cached values can be defined in the configuration, default is 30 days.</p>
+<p>The implementation of the cache layer is left up to the application using this module.</p>
+<p>All it needs to expose in this interface is two methods: <code>get</code> and <code>set</code>.</p>
+<p>The cache key will be set to <code>device:UA</code> where <code>UA</code> is the User-Agent string with
+all instances of the <code>:</code> character replaced by <code>_</code>, to play nice with Redis keys.</p>
+<p>The TTL for storing these cached values can be defined in the configuration, default is 30 days.</p>
 
     </div>
 
