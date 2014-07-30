@@ -1,6 +1,6 @@
 {
   "name": "wurfl-cloud-client",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Detect devices using WURFL Cloud",
   "main": "index.js",
   "author": {
@@ -23,7 +23,12 @@
     "detect",
     "detection",
     "capabilities",
-    "middlware"
+    "cache",
+    "express",
+    "connect",
+    "middleware",
+    "hapi",
+    "plugin"
   ],
   "license": "ISC",
   "engines": {

@@ -3,7 +3,7 @@ var assert = require('assert'),
 
 var client = require('./../');
 
-suite('middleware:', function(){
+suite('express middleware:', function(){
 	var apiKey = 'abc:123',
 		replyJSON = {
 			apiVersion: 'WurflCloud 1.5.0.2',
