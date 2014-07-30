@@ -68,9 +68,9 @@ suite('cache:', function(){
 
 		nock('http://foobar.com').get('/v1/json/').reply(200, context.replyJSON);
 
-		client.detectDevice('FooBar', function(err, result){
+		client.detectDevice('foo:bar:ham', function(err, result){
 			assert.ifError(err);
-			assert.deepEqual(context.cached.key, 'device:FooBar');
+			assert.deepEqual(context.cached.key, 'device:foo_bar_ham');
 			assert.deepEqual(context.cached.value, context.result);
 			assert.deepEqual(context.cached.ttl, 12345);
 			done();
@@ -80,10 +80,10 @@ suite('cache:', function(){
 	test('use result from cache', function(done){
 		var context = this;
 
-		context.cached.key = 'device:FooBar';
+		context.cached.key = 'device:foo_bar_ham';
 		context.cached.value = context.result;
 
-		client.detectDevice('FooBar', function(err, result){
+		client.detectDevice('foo:bar:ham', function(err, result){
 			assert.ifError(err);
 			assert.deepEqual(result, context.result);
 			done();

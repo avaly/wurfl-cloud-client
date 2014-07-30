@@ -1,7 +1,7 @@
 {
 	"name": "WURFL Cloud Client",
 	"description": "Detect devices using WURFL Cloud",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"options": {
 		"paths": "lib/",
 		"outdir": "docs",
