@@ -1,6 +1,6 @@
 # WURFL Cloud Client
 
-[![Build Status](https://travis-ci.org/avaly/wurfl-cloud-client.svg)](https://travis-ci.org/avaly/wurfl-cloud-client)
+[![Build Status](https://travis-ci.org/avaly/wurfl-cloud-client.svg?branch=master)](https://travis-ci.org/avaly/wurfl-cloud-client)
 [![Coverage Status](https://coveralls.io/repos/avaly/wurfl-cloud-client/badge.png)](https://coveralls.io/r/avaly/wurfl-cloud-client)
 [![Dependencies](https://david-dm.org/avaly/wurfl-cloud-client.png)](https://david-dm.org/avaly/wurfl-cloud-client)
 
