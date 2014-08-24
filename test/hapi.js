@@ -18,14 +18,27 @@ suite('hapi:', function(){
 			errors:{}
 		};
 
+	setup(function() {
+		this.plugin = {
+			cache: function() {
+				return {
+					get: function(key, cb) {
+						cb(null, null);
+					},
+					set: function() {
+					}
+				};
+			}
+		};
+	});
+
 	teardown(function() {
 		client.config = null;
+		client.cache = null;
 	});
 
 	test('with configuration parameter', function(done){
-		nock('http://foobar.com')
-			.get('/v1/json/')
-			.reply(200, replyJSON);
+		nock('http://foobar.com').get('/v1/json/').reply(200, replyJSON);
 
 		var request = {
 				headers: {
@@ -35,20 +48,19 @@ suite('hapi:', function(){
 				info: {
 					remoteAddress: '192.168.10.10'
 				}
-			},
-			plugin = {
-				ext: function(event, callback) {
-					callback(request, function() {
-						assert.equal(client.config.apiKey, apiKey);
-						assert.equal(client.config.username, apiKey.split(':')[0]);
-						assert.equal(client.config.password, apiKey.split(':')[1]);
-						assert.deepEqual(request.capabilities, replyJSON.capabilities);
-						done();
-					});
-				}
 			};
 
-		client.register(plugin, {
+		this.plugin.ext = function(event, callback) {
+			callback(request, function() {
+				assert.equal(client.config.apiKey, apiKey);
+				assert.equal(client.config.username, apiKey.split(':')[0]);
+				assert.equal(client.config.password, apiKey.split(':')[1]);
+				assert.deepEqual(request.capabilities, replyJSON.capabilities);
+				done();
+			});
+		};
+
+		client.register(this.plugin, {
 			host: 'foobar.com',
 			apiKey: apiKey
 		}, function() {});
@@ -88,16 +100,15 @@ suite('hapi:', function(){
 				info: {
 					remoteAddress: '192.168.10.10'
 				}
-			},
-			plugin = {
-				ext: function(event, callback) {
-					callback(request, function() {
-						assert.deepEqual(request.capabilities, replyJSON.capabilities);
-						done();
-					});
-				}
 			};
 
-		client.register(plugin, null, function() {});
+		this.plugin.ext = function(event, callback) {
+			callback(request, function() {
+				assert.deepEqual(request.capabilities, replyJSON.capabilities);
+				done();
+			});
+		};
+
+		client.register(this.plugin, null, function() {});
 	});
 });

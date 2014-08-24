@@ -6,3 +6,4 @@ lcov.info
 .coveralls.yml
 
 docs
+tmp
