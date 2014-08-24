@@ -2,7 +2,7 @@
     "project": {
         "name": "WURFL Cloud Client",
         "description": "Detect devices using WURFL Cloud",
-        "version": "1.1.3"
+        "version": "1.2.0"
     },
     "files": {
         "lib/index.js": {
@@ -128,7 +128,7 @@
         {
             "file": "lib/index.js",
             "line": 266,
-            "description": "Hapi plugin\n\nIt populates a `capabilities` on the `request` parameter,\ncontaining the `capabilities` object from the WURFL Cloud response.",
+            "description": "[Hapi](http://hapijs.com/) plugin\n\nIt populates a `capabilities` on the `request` parameter,\ncontaining the `capabilities` object from the WURFL Cloud response.\n\nIf the config TTL option is set, it uses the caching interface\nexposed by Hapi to plugins via [`plugin.cache`](http://hapijs.com/api#plugincacheoptions).",
             "example": [
                 "\n\n    var Hapi = require('hapi');\n    var server = new Hapi.Server();\n    server.pack.register({\n        plugin: require('wurfl-cloud-client'),\n        options: {\n            apiKey: '...'\n        }\n    });\n    server.route({\n        method: 'GET',\n        path: '/',\n        handler: function(request, reply) {\n            // request.capabilities is populated now\n        }\n    });"
             ],
