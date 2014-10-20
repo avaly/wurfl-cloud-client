@@ -119,9 +119,7 @@ suite('cache hapi:', function(){
 				return {
 					get: function(key, cb) {
 						if (context.cached.key === key) {
-							cb(null, {
-								item: context.cached.value
-							});
+							cb(null, context.cached.value);
 						}
 						else {
 							cb(null, null);

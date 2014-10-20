@@ -1,6 +1,6 @@
 {
   "name": "wurfl-cloud-client",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Detect devices using WURFL Cloud",
   "main": "index.js",
   "author": {
@@ -43,15 +43,15 @@
     "lib"
   ],
   "dependencies": {
-    "request": "^2.37.0",
+    "request": "^2.45.0",
     "underscore": "^1.6.0"
   },
   "devDependencies": {
-    "coveralls": "^2.11.1",
-    "istanbul": "^0.3.0",
-    "mocha": "^1.20.1",
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.2",
+    "mocha": "^1.21.5",
     "mocha-istanbul": "^0.2.0",
-    "nock": "^0.42.2",
+    "nock": "^0.48.1",
     "yuidoc-theme-blue": "^0.1.8",
     "yuidocjs": "^0.3.50"
   }
