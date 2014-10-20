@@ -351,7 +351,7 @@ var client = module.exports = {
 	},
 
 	/**
-	 * [Hapi](http://hapijs.com/) plugin
+	 * [Hapi](http://hapijs.com/) 7+ plugin
 	 *
 	 * It populates a &#x60;capabilities&#x60; on the &#x60;request&#x60; parameter,
 	 * containing the &#x60;capabilities&#x60; object from the WURFL Cloud response.
@@ -402,12 +402,7 @@ var client = module.exports = {
 						if (err) {
 							return cb(err);
 						}
-						if (cached &amp;&amp; cached.item) {
-							cb(null, cached.item);
-						}
-						else {
-							cb(null, null);
-						}
+						cb(null, cached);
 					});
 				},
 				set: cache.set.bind(cache)
