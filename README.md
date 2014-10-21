@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/avaly/wurfl-cloud-client.svg?branch=master)](https://travis-ci.org/avaly/wurfl-cloud-client)
 [![Coverage Status](https://coveralls.io/repos/avaly/wurfl-cloud-client/badge.png)](https://coveralls.io/r/avaly/wurfl-cloud-client)
 [![Dependencies](https://david-dm.org/avaly/wurfl-cloud-client.png)](https://david-dm.org/avaly/wurfl-cloud-client)
+[![Flattr](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=avaly&url=https://github.com/avaly/wurfl-cloud-client&title=wurfl-cloud-client&language=&tags=github&category=software)
 
 Detect devices using [WURFL Cloud](http://www.scientiamobile.com/cloud)
 
