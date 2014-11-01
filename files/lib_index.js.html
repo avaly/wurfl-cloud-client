@@ -18,7 +18,7 @@
             <h1 class="blue-main-title">WURFL Cloud Client</h1>
         </div>
         <div class="yui3-u-1-4 version project-version">
-            API Docs for: 1.2.0
+            API Docs for: 2.1.0
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -181,7 +181,7 @@ var internal = {
 
 	cached: function(ua, callback) {
 		if (client.cache) {
-			client.cache.get(&#x27;device:&#x27; + ua.replace(/:/g, &#x27;_&#x27;), callback);
+			client.cache.get(&#x27;device:&#x27; + ua.replace(/[:\s]/g, &#x27;_&#x27;), callback);
 		}
 		else {
 			callback(null, false);
@@ -190,7 +190,7 @@ var internal = {
 
 	cache: function(ua, device) {
 		if (client.cache) {
-			client.cache.set(&#x27;device:&#x27; + ua.replace(/:/g, &#x27;_&#x27;), device, client.config.ttl);
+			client.cache.set(&#x27;device:&#x27; + ua.replace(/[:\s]/g, &#x27;_&#x27;), device, client.config.ttl);
 		}
 	}
 
