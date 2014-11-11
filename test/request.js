@@ -76,6 +76,13 @@ suite('request from server:', function(){
 		});
 	});
 
+	test('no User-Agent sent', function(done) {
+		client.detectDevice(undefined, function(err){
+			assert.ok(err instanceof Error);
+			done();
+		});
+	})
+
 	suite('fail request', function(){
 		setup(function(){
 			client.configure({
