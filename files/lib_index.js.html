@@ -18,7 +18,7 @@
             <h1 class="blue-main-title">WURFL Cloud Client</h1>
         </div>
         <div class="yui3-u-1-4 version project-version">
-            API Docs for: 2.1.0
+            API Docs for: 2.1.1
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -294,10 +294,12 @@ var client = module.exports = {
 		if (!client.config) {
 			client.configure({});
 		}
-
 		if (!arguments[2]) {
 			callback = headers;
 			headers = {};
+		}
+		if (!ua) {
+			return callback(new Error(&#x27;[wurfl-cloud-client] No User-Agent sent&#x27;), null);
 		}
 
 		internal.cached(ua, function(err, result){

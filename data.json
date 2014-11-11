@@ -2,7 +2,7 @@
     "project": {
         "name": "WURFL Cloud Client",
         "description": "Detect devices using WURFL Cloud",
-        "version": "1.2.0"
+        "version": "2.1.1"
     },
     "files": {
         "lib/index.js": {
@@ -103,7 +103,7 @@
         },
         {
             "file": "lib/index.js",
-            "line": 226,
+            "line": 228,
             "description": "Middleware for `connect`/`express`-based applications.\n\nIt populates a `capabilities` on the `request` parameter,\ncontaining the `capabilities` object from the WURFL Cloud response.",
             "example": [
                 "\n\n    var app = express();\n    app.use(client.middleware({\n        apiKey: '...'\n    }));\n    app.get('/', function(req) {\n        // req.capabilities is populated now\n    });"
@@ -127,7 +127,7 @@
         },
         {
             "file": "lib/index.js",
-            "line": 266,
+            "line": 268,
             "description": "[Hapi](http://hapijs.com/) 7+ plugin\n\nIt populates a `capabilities` on the `request` parameter,\ncontaining the `capabilities` object from the WURFL Cloud response.\n\nIf the config TTL option is set, it uses the caching interface\nexposed by Hapi to plugins via [`plugin.cache`](http://hapijs.com/api#plugincacheoptions).",
             "example": [
                 "\n\n    var Hapi = require('hapi');\n    var server = new Hapi.Server();\n    server.pack.register({\n        plugin: require('wurfl-cloud-client'),\n        options: {\n            apiKey: '...'\n        }\n    });\n    server.route({\n        method: 'GET',\n        path: '/',\n        handler: function(request, reply) {\n            // request.capabilities is populated now\n        }\n    });"
