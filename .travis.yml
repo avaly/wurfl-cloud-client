@@ -9,7 +9,8 @@ cache:
 
 env:
   global:
-    - secure: MgR802lgNK7hCjupbXQkSj6sRxrLO9pO+gvhV5S9X9LkQfaZL3jYgkM8+26dra4Bqtj79VhbgUBIoqzFWQyHN0RobOaJFzN5DbrAnklZ0LNsTeANEeczSa7FJxy9h2mbPPZFNix3HJnFcnRa3vHfVedIeqJEZ1NYX9+iFo/OgZQ=
+    # GH_TOKEN
+    - secure: "HkKIcEHONKgF7rHlQ6rL2Fe2zvzkGYc9tbdDQUjOe4v/mzZuay8eUfRUK944pNSXSi9Nd7apnoMFAehjgouUSpPBy59FRd6ovtMuR4MahjQW6d/Ko7M30pFhwKLBm0EBdQV0Yc84NldLts+YalGhoQ7FTBNmzjBqwv2bVIJCP5o="
 
 after_success:
   - "./tools/coverage"
