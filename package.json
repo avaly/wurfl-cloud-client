@@ -1,6 +1,6 @@
 {
   "name": "wurfl-cloud-client",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "Detect devices using WURFL Cloud",
   "main": "index.js",
   "author": {
