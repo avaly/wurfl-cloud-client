@@ -170,12 +170,16 @@ suite('cache hapi:', function(){
 		nock('http://foobar.com').get('/v1/json/').reply(200, context.replyJSON);
 
 		context.plugin.ext = function(event, callback) {
-			callback(context.request, function() {
-				assert.deepEqual(context.cached.key, 'device:foo_bar_ham');
-				assert.deepEqual(context.cached.value, context.result);
-				assert.deepEqual(context.cached.ttl, 12345);
-				done();
-			});
+			var replyMock = {
+				continue: function() {
+					assert.deepEqual(context.cached.key, 'device:foo_bar_ham');
+					assert.deepEqual(context.cached.value, context.result);
+					assert.deepEqual(context.cached.ttl, 12345);
+					done();
+				}
+			};
+
+			callback(context.request, replyMock);
 		};
 
 		client.register(context.plugin, null, function() {});
@@ -188,10 +192,14 @@ suite('cache hapi:', function(){
 		context.cached.value = context.result;
 
 		context.plugin.ext = function(event, callback) {
-			callback(context.request, function() {
-				assert.deepEqual(context.request.capabilities, context.result.capabilities);
-				done();
-			});
+			var replyMock = {
+				continue: function() {
+					assert.deepEqual(context.request.capabilities, context.result.capabilities);
+					done();
+				}
+			};
+
+			callback(context.request, replyMock);
 		};
 
 		client.register(context.plugin, null, function() {});

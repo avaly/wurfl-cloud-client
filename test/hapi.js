@@ -19,7 +19,7 @@ suite('hapi:', function(){
 		};
 
 	setup(function() {
-		this.plugin = {
+		this.server = {
 			cache: function() {
 				return {
 					get: function(key, cb) {
@@ -50,17 +50,21 @@ suite('hapi:', function(){
 				}
 			};
 
-		this.plugin.ext = function(event, callback) {
-			callback(request, function() {
-				assert.equal(client.config.apiKey, apiKey);
-				assert.equal(client.config.username, apiKey.split(':')[0]);
-				assert.equal(client.config.password, apiKey.split(':')[1]);
-				assert.deepEqual(request.capabilities, replyJSON.capabilities);
-				done();
-			});
+		this.server.ext = function(event, callback) {
+			var replyMock = {
+				continue: function() {
+					assert.equal(client.config.apiKey, apiKey);
+					assert.equal(client.config.username, apiKey.split(':')[0]);
+					assert.equal(client.config.password, apiKey.split(':')[1]);
+					assert.deepEqual(request.capabilities, replyJSON.capabilities);
+					done();
+				}
+			};
+
+			callback(request, replyMock);
 		};
 
-		client.register(this.plugin, {
+		client.register(this.server, {
 			host: 'foobar.com',
 			apiKey: apiKey
 		}, function() {});
@@ -102,13 +106,17 @@ suite('hapi:', function(){
 				}
 			};
 
-		this.plugin.ext = function(event, callback) {
-			callback(request, function() {
-				assert.deepEqual(request.capabilities, replyJSON.capabilities);
-				done();
-			});
+		this.server.ext = function(event, callback) {
+			var replyMock = {
+				continue: function() {
+					assert.deepEqual(request.capabilities, replyJSON.capabilities);
+					done();
+				}
+			};
+
+			callback(request, replyMock);
 		};
 
-		client.register(this.plugin, null, function() {});
+		client.register(this.server, null, function() {});
 	});
 });
