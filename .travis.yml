@@ -1,11 +1,13 @@
 language: node_js
 node_js:
-  - '0.10'
-  - '0.12'
+  - 'stable'
+  - '6'
+  - '4'
 
 cache:
   directories:
     - node_modules
+  yarn: true
 
 env:
   global:
@@ -14,15 +16,14 @@ env:
 
 after_success:
   - "./tools/coverage"
-  - "./tools/docs"
 
 deploy:
-  provider: npm
-  email: github-com@agachi.name
-  api_key:
-    secure: mbgGlJGgLteOROnKiNcR+DJf5rSx8Ol+2qt5vkxWFsZYdnBi0DW4Z3iScmtWaZVUUDyqf0WT+p/Q9Ef5qM8/Gn7Ryt8bs6U6H+3zKBf7ZUBf+Wg242gFtQQwPrykb5PylN0O55EOaOjDEs9RXEPsjeCa/m64lQOc2hU6P+pI4a8=
-  on:
-    tags: true
-    repo: avaly/wurfl-cloud-client
-    # Required due to https://github.com/travis-ci/travis-ci/issues/1675
-    all_branches: true
+  - provider: script
+    skip_cleanup: true
+    script: tools/docs
+    on:
+      branch: master
+  - provider: script
+    script: tools/publish.sh
+    on:
+      tags: true
