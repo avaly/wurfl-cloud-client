@@ -1,5 +1,7 @@
 # WURFL Cloud Client
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/avaly/wurfl-cloud-client.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://img.shields.io/travis/avaly/wurfl-cloud-client/master.svg?style=flat-square)](https://travis-ci.org/avaly/wurfl-cloud-client)
 [![Coverage Status](https://img.shields.io/coveralls/avaly/wurfl-cloud-client/master.svg?style=flat-square)](https://coveralls.io/r/avaly/wurfl-cloud-client)
 [![Dependencies](https://img.shields.io/david/avaly/wurfl-cloud-client.svg?style=flat-square)](https://david-dm.org/avaly/wurfl-cloud-client)
