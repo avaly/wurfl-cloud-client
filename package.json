@@ -49,7 +49,7 @@
   "devDependencies": {
     "coveralls": "^2.12.0",
     "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
+    "mocha": "3.4.2",
     "mocha-istanbul": "^0.3.0",
     "nock": "^9.0.9",
     "yuidoc-theme-blue": "^0.1.9",
