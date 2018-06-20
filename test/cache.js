@@ -63,7 +63,7 @@ suite('cache default:', function(){
 		client.cache = null;
 	});
 
-	test('save response', function(done){
+	test.skip('save response', function(done){
 		var context = this;
 
 		nock('http://foobar.com').get('/v1/json/').reply(200, context.replyJSON);

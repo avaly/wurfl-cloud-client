@@ -27,6 +27,7 @@ suite('configure:', function(){
 			username: '',
 			password: '',
 			capabilities: [],
+			timeout: 2000,
 			ttl: 2592000
 		});
 	});
