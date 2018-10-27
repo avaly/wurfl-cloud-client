@@ -43,7 +43,7 @@
     "lib"
   ],
   "dependencies": {
-    "request": "^2.81.0",
+    "request": "^2.84.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
